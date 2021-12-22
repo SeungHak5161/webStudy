@@ -1,0 +1,94 @@
+body{
+  height: 100vh;
+  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/bg.jpg?raw=true");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.container {
+
+}
+
+.container .heros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: none;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.container .heros .hero {
+  width: 80px;
+  height: 84px;
+  margin: 4px;
+  background-color: #555;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transform: skewX(-14deg);
+  transition:
+    transform .1s,
+    background-color.6s;
+}
+
+.container .heros .hero:hover {
+  background-color: #ff9c00;
+  transform:
+    scale(1.3) skewX(-14deg);
+  z-index: 1;
+}
+
+.container .heros .hero .image {
+  width: 140%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90px;
+  transform: skew(14deg) translateX(-16px);
+}
+
+.container .heros .hero:nth-child(1) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero1.png?raw=true");}
+.container .heros .hero:nth-child(2) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero2.png?raw=true");}
+.container .heros .hero:nth-child(3) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero3.png?raw=true");}
+.container .heros .hero:nth-child(4) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero4.png?raw=true");}
+.container .heros .hero:nth-child(5) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero5.png?raw=true");}
+.container .heros .hero:nth-child(6) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero6.png?raw=true");}
+.container .heros .hero:nth-child(7) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero7.png?raw=true");}
+.container .heros .hero:nth-child(8) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero8.png?raw=true");}
+.container .heros .hero:nth-child(9) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero9.png?raw=true");}
+.container .heros .hero:nth-child(10) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero10.png?raw=true");}
+.container .heros .hero:nth-child(11) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero11.png?raw=true");}
+.container .heros .hero:nth-child(12) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero12.png?raw=true");}
+.container .heros .hero:nth-child(13) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero13.png?raw=true");}
+.container .heros .hero:nth-child(14) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero14.png?raw=true");}
+.container .heros .hero:nth-child(15) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero15.png?raw=true");}
+.container .heros .hero:nth-child(16) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero16.png?raw=true");}
+.container .heros .hero:nth-child(17) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero17.png?raw=true");}
+.container .heros .hero:nth-child(18) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero18.png?raw=true");}
+.container .heros .hero:nth-child(19) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero19.png?raw=true");}
+.container .heros .hero:nth-child(20) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero20.png?raw=true");}
+.container .heros .hero:nth-child(21) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero21.png?raw=true");}
+.container .heros .hero:nth-child(22) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero22.png?raw=true");}
+.container .heros .hero:nth-child(23) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero23.png?raw=true");}
+.container .heros .hero:nth-child(24) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero24.png?raw=true");}
+.container .heros .hero:nth-child(25) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero25.png?raw=true");}
+.container .heros .hero:nth-child(26) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero26.png?raw=true");}
+.container .heros .hero:nth-child(27) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero27.png?raw=true");}
+.container .heros .hero:nth-child(28) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero28.png?raw=true");}
+.container .heros .hero:nth-child(29) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero29.png?raw=true");}
+.container .heros .hero:nth-child(30) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero30.png?raw=true");}
+.container .heros .hero:nth-child(31) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero31.png?raw=true");}
+.container .heros .hero:nth-child(32) .image {  background-image: url("https://github.com/SeungHak5161/webStudy/blob/master/Overwatch/images/hero32.png?raw=true");}
+
+.container .logo{
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.container .logo img{
+  width: 100%;
+}
