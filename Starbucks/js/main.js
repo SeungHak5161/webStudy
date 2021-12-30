@@ -49,12 +49,36 @@ new Swiper('.notice-line .swiper-container', {
 });
 
 new Swiper('.promotion .swiper-container', {
+  direction: 'horizontal',
   slidesPerView: 3,
   spaceBetween: 10,
   centeredSlides: true,
-  direction: 'horizontal',
   autoplay: {
     delay: 5000
   },
-  loop: true
+  loop: true,
+  pagination:{
+    el:'.promotion .swiper-pagination', //페이지 번호 요소 선택자
+    clickable:true
+  },
+  navigation:{
+    prevEl:'.promotion .swiper-prev',
+    nextEl:'.promotion .swiper-next'
+  }
+});
+
+const promotionEl=document.querySelector('.promotion');
+const promotionToggleBtn=document.querySelector('.toggle-promotion');
+const promotionToggleBtnIcon=document.querySelector('.toggle-promotion-icon');
+let isHidePromotion=false;
+promotionToggleBtn.addEventListener('click',function(){
+  isHidePromotion=!isHidePromotion
+  if(isHidePromotion){
+    promotionEl.classList.add('hide');
+    promotionToggleBtnIcon.classList.add('hide');
+  }
+  else{
+    promotionEl.classList.remove('hide');
+    promotionToggleBtnIcon.classList.remove('hide');
+  }
 });
