@@ -16,6 +16,7 @@ searchInputEl.addEventListener('blur', function () {
 });
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl=document.querySelector('#to-top');
 //_.throttle(함수,시간(ms))
 window.addEventListener('scroll', _.throttle(function () {
   // console.log(window.scrollY);
@@ -25,13 +26,29 @@ window.addEventListener('scroll', _.throttle(function () {
       opacity: 0,
       display: 'none'
     });
+    gsap.to(toTopEl, .2,{
+      x:0,
+      opacity:1,
+      display:'flex'
+    });
   } else {
     gsap.to(badgeEl, .6, {
       opacity: 1,
       display: 'block'
     });
+    gsap.to(toTopEl, .2,{
+      x:100,
+      opacity:0,
+      display:'none'
+    });
   }
 }, 300));
+
+toTopEl.addEventListener('click',function(){
+  gsap.to(window, .7,{
+    scrollTo:0
+  });
+})
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
 fadeEls.forEach(function (fadeEl, index) {
