@@ -18,7 +18,7 @@ searchInputEl.addEventListener('blur', function () {
 const badgeEl = document.querySelector('header .badges');
 //_.throttle(함수,시간(ms))
 window.addEventListener('scroll', _.throttle(function () {
-  console.log(window.scrollY);
+  // console.log(window.scrollY);
   if (window.scrollY > 500) {
     //gsap.toString(요소, 지속시간(s), 옵션);
     gsap.to(badgeEl, .6, {
@@ -67,6 +67,18 @@ new Swiper('.promotion .swiper-container', {
   }
 });
 
+new Swiper('.awards .swiper-container', {
+  direction: 'horizontal',
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next'
+  }
+});
+
 const promotionEl = document.querySelector('.promotion');
 const promotionToggleBtn = document.querySelector('.toggle-promotion');
 const promotionToggleBtnIcon = document.querySelector('.toggle-promotion-icon');
@@ -82,21 +94,35 @@ promotionToggleBtn.addEventListener('click', function () {
   }
 });
 
-function random(min,max){
-  return parseFloat((Math.random() * (max-min) + min).toFixed(2))
+function random(min, max) {
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2))
 }
 
 function floatingObject(selector, delay, size) {
   // gsap.to(요소,시간,옵션)
-  gsap.to(selector, random(1.5,2.5), {
+  gsap.to(selector, random(1.5, 2.5), {
     y: size,
     repeat: -1,
     yoyo: true,
     ease: Power1.easeInOut,
-    delay: random(0,delay)
+    delay: random(0, delay)
   });
 }
 
 floatingObject('.floating1', 1, 15);
 floatingObject('.floating2', .5, 15);
 floatingObject('.floating3', 1.5, 20);
+
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach(function (epyEl) { //보여짐 여부를 감시할 요소 지정
+  new ScrollMagic
+    .Scene({
+      triggerElement: epyEl,
+      triggerHook: .8 //뷰포트 기준 0.8 지점에서 걸림
+    })
+    .setClassToggle(epyEl, 'show')
+    .addTo(new ScrollMagic.Controller());
+});
+
+const thisYear=document.querySelector('.this-year');
+thisYear.textContent=new Date().getFullYear();
