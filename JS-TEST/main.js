@@ -1,5 +1,7 @@
 import getType from './js/getType'
 import random from './js/getRandom'
+import _ from 'lodash'
+import axios from 'axios'
 
 // // console.log(getType(123))
 // // console.log(getType(null))
@@ -170,3 +172,72 @@ import random from './js/getRandom'
 
 // const ram= new toObject(...ramen)
 // console.log(ram)
+
+// // - 얕은 복사와 깊은 복사
+// const user = {
+//   name: 'hak',
+//   sex: 'male',
+//   age: 26,
+//   job: [
+//     '100soo',
+//     'pooMaker'
+//   ]
+// }
+
+// 얕은 복사
+// const copyUser=user
+// 얕은 복사
+// const copyUser=Object.assign(user)
+// 깊은 복사
+// const copyUser=Object.assign({},user)
+// 깊은 복사
+// const copyUser={...user}
+// 깊은 복사
+// const copyUser=_.cloneDeep(user)
+// 얕은 복사여야 하는데 왜 깊은 복사요? 참조타입 말고 원시타입으로 테스트해도 같음
+// const copyUser=_.clone(user)
+
+// let num1=10
+// let num2=_.clone(num1)
+// num1=11
+// console.log('num1=',num1)
+// console.log('num2=',num2)
+
+// user.age=50
+// console.log(user===copyUser)
+// console.log('user:',user)
+// console.log('copyuser:',copyUser)
+
+
+// // - storage
+// const user = {
+//   name: 'hak',
+//   sex: 'male',
+//   age: 26,
+//   job: [
+//     '100soo',
+//     'pooMaker'
+//   ]
+// }
+
+// localStorage.setItem('user',JSON.stringify(user))
+// console.log(JSON.parse(localStorage.getItem('user')))
+// const obj=JSON.parse(localStorage.getItem('user'))
+// obj.age=17
+// localStorage.setItem('user',JSON.stringify(obj))
+// console.log(JSON.parse(localStorage.getItem('user')))
+// localStorage.removeItem('user')
+
+function fetchMovies() {
+  axios
+    .get('https://www.omdbapi.com/?apikey=7035c60c&s=inception')
+    .then(res => {
+      console.log(res)
+      const mTitleEl=document.querySelector('#mTitle')
+      const mPosterEl=document.querySelector('#mPoster')
+      mTitleEl.textContent=res.data.Search[0].Title
+      mPosterEl.src=res.data.Search[0].Poster
+    })
+}
+
+fetchMovies()
