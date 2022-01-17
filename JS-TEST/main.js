@@ -209,7 +209,7 @@ import axios from 'axios'
 // console.log('copyuser:',copyUser)
 
 
-// // - storage
+// // - storage, JSON
 // const user = {
 //   name: 'hak',
 //   sex: 'male',
@@ -228,16 +228,60 @@ import axios from 'axios'
 // console.log(JSON.parse(localStorage.getItem('user')))
 // localStorage.removeItem('user')
 
-function fetchMovies() {
-  axios
-    .get('https://www.omdbapi.com/?apikey=7035c60c&s=inception')
-    .then(res => {
-      console.log(res)
-      const mTitleEl=document.querySelector('#mTitle')
-      const mPosterEl=document.querySelector('#mPoster')
-      mTitleEl.textContent=res.data.Search[0].Title
-      mPosterEl.src=res.data.Search[0].Poster
-    })
-}
 
-fetchMovies()
+// // OMDB API
+// function fetchMovies() {
+//   axios
+//     .get('https://www.omdbapi.com/?apikey=c7ccc228&s=inception')
+//     .then(res => {
+//       console.log(res)
+//       const mTitleEl=document.querySelector('#mTitle')
+//       const mPosterEl=document.querySelector('#mPoster')
+//       mTitleEl.textContent=res.data.Search[0].Title
+//       mPosterEl.src=res.data.Search[0].Poster
+//     })
+// }
+
+// fetchMovies()
+
+
+// // 정규 표현식
+const str=`
+010-3364-5999999
+theMeow@cat.com
+https://www.omdbapi.com/?apikey=c7ccc228&s=inception
+The quick brown fox jumps over the lazy dog.
+abbcccdddd
+hxyp
+http://localhost:1234
+어쩜우린_복잡한 인연에
+`
+// const regexp=new RegExp('the', 'gi')
+// const regexp=/fox/gi
+// console.log(str.match(regexp))
+// console.log(regexp.test(str))
+// console.log(str.replace(regexp,'cat'))
+// console.log(str)
+
+// let str2=str
+// str2=str2.replace(regexp,'cat')
+// console.log(str2)
+
+// console.log(str.match(/\.$/gim))
+
+// console.log(str.match(/^t/gim))
+// console.log(str.match(/d$/gm))
+// console.log(str.match(/h..p/g))
+// console.log(str.match(/fox|dog/))
+// console.log(str.match(/https?/g))
+// console.log(str.match(/\b\w{2,4}\b/g))
+// console.log(str.match(/[가-힣]{1,}/g))
+// console.log(str.match(/\bf\w{1,}\b/g))
+
+// const space=`   [ man     &     woman  ]
+// such   /  l o n g   /   distance`
+// console.log(space)
+// console.log(space.replace(/\s/g,''))
+
+console.log(str.match(/.{1,}(?=\@)/g))
+console.log(str.match(/(?<=\@).{1,}/g))
