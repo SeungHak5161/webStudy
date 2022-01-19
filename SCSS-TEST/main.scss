@@ -1,0 +1,71 @@
+$color : tomato;
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  h1 {
+    color: $color;
+    background-color: orange;
+    font-size: 60px
+  }
+
+  >.box {
+    color: $color;
+    background-color: burlywood;
+    display: flex;
+    width: 500px;
+    height: 700px;
+
+    font: {
+      weight: bold;
+      size: 20px;
+      family: sans-serif;
+    };
+
+    margin: {
+      top: 10px;
+      left: 20px;
+    };
+
+    padding: {
+      top: 10px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+    };
+  }
+
+  .box {
+    position: absolute;
+    .descendant {
+      color: blueviolet;
+      background-color: yellowgreen;
+      width: 300px;
+      height: 500px;
+      position: relative;
+      top: 100px;
+
+      // 패딩은 상속이 안되는 요소래!!!
+      padding: {
+        top: 50px;
+        left: 70px;
+      };
+
+      .box {
+        @include center;
+        color: yellowgreen;
+        background-color: blueviolet;
+        width: 100px;
+        height: 300px;
+        top: 150px;
+        &:hover{
+          color: $color;
+          transform: scale(120%);
+        }
+      }
+    }
+  }
+}
