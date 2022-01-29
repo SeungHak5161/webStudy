@@ -4,3 +4,7 @@ async function test(){
   console.log(await promise)
 }
 test()
+// const path = require('path')
+// console.log(path)
+// console.log(__dirname)
+// console.log(path.resolve(__dirname, 'dist'),)
