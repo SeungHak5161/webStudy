@@ -9,35 +9,32 @@
   <script type="text/babel">
     const rootElement=document.getElementById("root")
 
-      const state={keyword:"", typing:false, result:""}
     
       const App=()=>{
+        //[first, second] => first: 상태 처리할 값, second : 상태를 업데이트 해줌
+        const [keyword,setKeyword]=React.useState("")
+        const [result, setResult]=React.useState("")
+        const [typing,setTyping]=React.useState(false)
+
         function handleChange(event){
-          setState({
-            typing: true,
-            keyword: event.target.value
-            })
+          setKeyword(event.target.value)
+          setTyping(true)
         }
         
         function handleClick(){
-            console.log('handle.click')
-          setState({
-            typing: false,
-            result: `We find results of ${state.keyword}`
-          })
+          setTyping(false)
+          setResult(`We find results of ${keyword}`)
         }
+        
         return(
           <>
             <input onChange={handleChange}/>
             <button onClick={handleClick}>search</button>
-            <p>{state.typing ? `Looking for ${state.keyword}..` : state.result}</p>
+            <p>
+            {typing ? `Looking for ${keyword}..` : result}
+            </p>
           </>
         )
-      }
-
-      function setState(newState){
-        Object.assign(state, newState)
-        render();
       }
 
       function render(){
