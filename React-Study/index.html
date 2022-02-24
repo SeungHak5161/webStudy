@@ -11,10 +11,19 @@
 
     
       const App=()=>{
+        //useState를 통해서 로컬 스토리지의 keyword를 설정할 때 초기에 한 번만 읽게 하기 위해서 함수로 구현
+        console.log("render")
         //[first, second] => first: 상태 처리할 값, second : 상태를 업데이트 해줌
-        const [keyword,setKeyword]=React.useState("")
+        const [keyword,setKeyword]=React.useState(
+          ()=>{console.log("initialize")
+          return window.localStorage.getItem("keyword")})
         const [result, setResult]=React.useState("")
         const [typing,setTyping]=React.useState(false)
+        //useEffect(~,[]) 배열에 들어가는 내용이 변경될 때만 업데이트
+        React.useEffect(()=>{
+          console.log("effect")
+          window.localStorage.setItem("keyword",keyword)
+        },[keyword])
 
         function handleChange(event){
           setKeyword(event.target.value)
@@ -28,7 +37,7 @@
         
         return(
           <>
-            <input onChange={handleChange}/>
+            <input onChange={handleChange} value={keyword}/>
             <button onClick={handleClick}>search</button>
             <p>
             {typing ? `Looking for ${keyword}..` : result}
