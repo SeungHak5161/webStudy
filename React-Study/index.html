@@ -9,45 +9,23 @@
   <script type="text/babel">
     const rootElement=document.getElementById("root")
 
-    //커스텀 훅 사용(훅이 반복되므로 함수화)
-    //side effect -> useEffect(~,[]) 배열(dependency array)에 들어가는 내용이 변경될 때만 업데이트
-    function useLocalStorage(itemName, value = ""){
-      const [state,setState]=React.useState(()=>{
-        return window.localStorage.getItem(itemName) || value
-      })
-      
-      React.useEffect(() => {
-        window.localStorage.setItem(itemName,state)
-      }, [state])
-
-      return [state,setState]
-    }
-    
     const App=()=>{
-      //lazy initialize -> useState를 통해서 로컬 스토리지의 keyword를 설정할 때 초기에 한 번만 읽게 하기 위해서 함수로 구현
-      console.log("render")
-      //[first, second] => first: 상태 처리할 값, second : 상태를 업데이트 해줌
-      const [keyword,setKeyword]=useLocalStorage("keyword")
-      const [result, setResult]=useLocalStorage("result")
-      const [typing,setTyping]=useLocalStorage("typing",false)
+      const [show, setShow]=React.useState(false)
 
-      function handleChange(event){
-        setKeyword(event.target.value)
-        setTyping(true)
-      }
-      
       function handleClick(){
-        setTyping(false)
-        setResult(keyword)
+        setShow((prev)=>!prev)
       }
-      
-      return(
+
+      return (
         <>
-          <input onChange={handleChange} value={keyword}/>
-          <button onClick={handleClick}>search</button>
-          <p>
-          {typing ? `Looking for ${keyword}..` : `We find results of ${keyword}`}
-          </p>
+          <button onClick={handleClick}>Search</button>
+          {show ? (
+            <>
+              <input />
+              <p></p>
+            </>
+            ) : null
+          }
         </>
       )
     }
