@@ -10,10 +10,25 @@
     const rootElement=document.getElementById("root")
 
     const App=()=>{
-      const [show, setShow]=React.useState(false)
+      console.log("App render start")
+      const [show, setShow]=React.useState(()=>{
+          console.log("App useState")
+          return false;
+        }
+      )
+
+      React.useEffect(()=>{
+        console.log("App useEffect, no deps")
+      })
+      React.useEffect(()=>{
+        console.log("App useEffect, empty deps")
+      },[])
+      React.useEffect(()=>{
+        console.log("App useEffect, [show]")
+      },[show])
 
       function handleClick(){
-        setShow((prev)=>!prev)
+        setShow((prev)=>!prev) 
       }
 
       return (
@@ -32,6 +47,7 @@
 
     function render(){
       ReactDOM.render(<App/>,rootElement)
+      console.log("App render end")
     }
 
     render();
