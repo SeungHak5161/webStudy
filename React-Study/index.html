@@ -1,6 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<style>
+  .button{
+    background-color: green;
+    border: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    /* justify-content: center; */
+    padding : 12px 25px;
+    margin : 3px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .blue{
+    background-color: blue;
+  }
+  .red{
+    background-color: red;
+  }
+  .gray{
+    background-color: gray;
+    color: black;
+  }
+  .black{
+    background-color: black;
+  }
+</style>
+
 <body>
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
@@ -9,88 +37,29 @@
   <script type="text/babel">
     const rootElement=document.getElementById("root")
 
-    const Child = () => {
-      console.log("   Child render start")
-      const [text,setText]=React.useState(()=>{
-        console.log("   Child useState")
-        return ""
-      })
-
-      React.useEffect(()=>{
-        console.log("   Child useEffect, no deps")
-        return ()=>{
-          console.log("   Child useEffect Clean up, no deps")
-        }
-      })
-      React.useEffect(()=>{
-        console.log("   Child useEffect, empty deps")
-        return ()=>{
-          console.log("   Child useEffect Clean up, empty deps")
-        }
-      },[])
-      React.useEffect(()=>{
-        console.log("   Child useEffect, [text]")
-        return ()=>{
-          console.log("   Child useEffect Clean up, [text]")
-        }
-      },[text])
-
-      function handleChange(event){
-        setText(event.target.value)
-      }
-
-      const element = (
-        <>
-          <input onChange={handleChange}/>
-          <p>{text}</p>
-        </>
-      )
-      console.log("   Child render end")
-      return element
-    }
-
-    const App=()=>{
-      console.log("App render start")
-      const [show, setShow]=React.useState(()=>{
-          console.log("App useState")
-          return false;
-        }
-      )
-
-      React.useEffect(()=>{
-        console.log("App useEffect, no deps")
-        return ()=>{
-          console.log("App useEffect Clean up, no deps")
-        }
-      })
-      React.useEffect(()=>{
-        console.log("App useEffect, empty deps")
-        return ()=>{
-          console.log("App useEffect Clean up, empty deps")
-        }
-      },[])
-      React.useEffect(()=>{
-        console.log("App useEffect, [show]")
-        return ()=>{
-          console.log("App useEffect Clean up, [show]")
-        }
-      },[show])
-
-      function handleClick(){
-        setShow((prev)=>!prev) 
-      }
-      console.log("App render end")
-
+    function Button({color="", style, ...rest}){
+      // console.log(JSON.stringify(props))
       return (
-        <>
-          <button onClick={handleClick}>Search</button> 
-          {show ? <Child /> : null}
-        </>
+        <button 
+        className={`button${color === "" ? "" : ` ${color}`}`} style={{fontSize:50, ...style}}
+        {...rest}
+        />
       )
     }
+
+    const element=(
+      <>
+        <Button style={{borderRadius:"50%"}}>green</Button>
+        <Button color="blue" style={{borderRadius:8}}>blue</Button>
+        <Button color="red" style={{}}>red</Button>
+        <Button color="gray" style={{}}>gray</Button>
+        <Button color="black" style={{}}>black</Button>
+      </>
+    )
+
 
     function render(){
-      ReactDOM.render(<App/>,rootElement)
+      ReactDOM.render(element,rootElement)
     }
 
     render();
