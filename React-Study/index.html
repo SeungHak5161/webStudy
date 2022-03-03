@@ -37,31 +37,27 @@
   <script type="text/babel">
     const rootElement=document.getElementById("root")
 
-    function Button({color="", style, ...rest}){
-      // console.log(JSON.stringify(props))
+    const App = () => {
+      const inputRef=React.useRef()
+      const divRef=React.useRef()
+      React.useEffect(() => {
+        inputRef.current.focus()
+
+        setTimeout(()=>{
+          divRef.current.style.backgroundColor="pink"
+        }, 1000)
+      },[])
       return (
-        <button 
-        className={`button${color === "" ? "" : ` ${color}`}`} style={{fontSize:50, ...style}}
-        {...rest}
-        />
+        <>
+          <input ref={inputRef}/>
+          <div ref={divRef} style={{height:100,width:300, backgroundColor:"brown"}}/>
+        </>
       )
     }
 
-    const element=(
-      <>
-        <Button style={{borderRadius:"50%"}}>green</Button>
-        <Button color="blue" style={{borderRadius:8}}>blue</Button>
-        <Button color="red" style={{}}>red</Button>
-        <Button color="gray" style={{}}>gray</Button>
-        <Button color="black" style={{}}>black</Button>
-      </>
-    )
-
-
     function render(){
-      ReactDOM.render(element,rootElement)
+      ReactDOM.render(<App/>,rootElement)
     }
-
     render();
   </script>
 </body>
