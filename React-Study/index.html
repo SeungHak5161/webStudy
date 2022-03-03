@@ -2,29 +2,33 @@
 <html lang="en">
 
 <style>
-  .button{
+  .button {
     background-color: green;
     border: none;
     color: white;
     display: inline-block;
     text-align: center;
     /* justify-content: center; */
-    padding : 12px 25px;
-    margin : 3px;
+    padding: 12px 25px;
+    margin: 3px;
     font-size: 15px;
     font-weight: bold;
   }
-  .blue{
+
+  .blue {
     background-color: blue;
   }
-  .red{
+
+  .red {
     background-color: red;
   }
-  .gray{
+
+  .gray {
     background-color: gray;
     color: black;
   }
-  .black{
+
+  .black {
     background-color: black;
   }
 </style>
@@ -38,19 +42,24 @@
     const rootElement=document.getElementById("root")
 
     const App = () => {
-      const inputRef=React.useRef()
-      const divRef=React.useRef()
-      React.useEffect(() => {
-        inputRef.current.focus()
-
-        setTimeout(()=>{
-          divRef.current.style.backgroundColor="pink"
-        }, 1000)
-      },[])
+      const handleSubmit=(event)=>{
+        //preventDefault() : 해당 이벤트의 기본 이벤트를 작동하지 않게 함. (여기선 submit 클릭시 새로고침 안되게 함)
+        event.preventDefault();
+        //console.dir() : 매개변수로 전달된 객체의 속성을 JSON과 같은 트리 구조로 출력
+        console.dir(event.target.elements)
+        alert(`FirstName:${event.target.elements.fname.value}, LastName:${event.target.elements.lname.value}`)
+      }
       return (
         <>
-          <input ref={inputRef}/>
-          <div ref={divRef} style={{height:100,width:300, backgroundColor:"brown"}}/>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="fname">First name:</label><br/>
+          <input type="text" id="fname" name="fname" defaultValue="Baek"/><br/>
+          <label htmlFor="lname">Last name:</label><br/>
+          <input type="text" id="lname" name="lname" defaultValue="SeungHak"/>
+          <br/>
+          <br/>
+          <input type="submit" defaultValue="submit"/>
+        </form>
         </>
       )
     }
