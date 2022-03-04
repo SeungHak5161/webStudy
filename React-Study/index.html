@@ -42,25 +42,37 @@
     const rootElement=document.getElementById("root")
 
     const App = () => {
+      const [message,setMessage]=React.useState("")
+      const [phoneNumber, setPhoneNumber]=React.useState("")
+      
       const handleSubmit=(event)=>{
-        //preventDefault() : 해당 이벤트의 기본 이벤트를 작동하지 않게 함. (여기선 submit 클릭시 새로고침 안되게 함)
-        event.preventDefault();
-        //console.dir() : 매개변수로 전달된 객체의 속성을 JSON과 같은 트리 구조로 출력
-        console.dir(event.target.elements)
-        alert(`FirstName:${event.target.elements.fname.value}, LastName:${event.target.elements.lname.value}`)
+        event.preventDefault()
+        alert(phoneNumber)
+      }
+
+      const handleChange=(event)=>{
+        if(event.target.value.startsWith(0)){
+          setMessage("Phone Number is valid")
+          setPhoneNumber(event.target.value)
+        } else if(event.target.value.length==0){
+          setPhoneNumber("")
+          setMessage("")
+        } else{
+          setMessage("Phone Number should starts with 0")
+        }
       }
       return (
-        <>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="fname">First name:</label><br/>
-          <input type="text" id="fname" name="fname" defaultValue="Baek"/><br/>
-          <label htmlFor="lname">Last name:</label><br/>
-          <input type="text" id="lname" name="lname" defaultValue="SeungHak"/>
-          <br/>
-          <br/>
-          <input type="submit" defaultValue="submit"/>
-        </form>
-        </>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="phone">Phone Number : </label>
+            <br/>
+            <input type="text" id="phone" name="phone" onChange={handleChange} value={phoneNumber}/>
+            <p>{message}</p>
+            <br/>
+            <br/>
+            {/*<button type="submit" disabled={(phoneNumber.length==11 && message=="Phone Number is valid") ? false : true}>Submit</button>*/}
+            <button type="submit" disabled={phoneNumber.length!==11 || message!=="Phone Number is valid"}>Submit</button>
+            <p>{phoneNumber}</p>
+          </form>
       )
     }
 
