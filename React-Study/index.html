@@ -41,45 +41,44 @@
   <script type="text/babel">
     const rootElement=document.getElementById("root")
 
-    const App = () => {
-      const [message,setMessage]=React.useState("")
-      const [phoneNumber, setPhoneNumber]=React.useState("")
-      
-      const handleSubmit=(event)=>{
-        event.preventDefault()
-        alert(phoneNumber)
+    // 에러 핸들링을 하는 컴포넌트는 클래스 컴포넌트로만 제공함
+    class ErrorBoundary extends React.Component{
+      state={error:null}
+      static getDerivedStateFromError(error){
+        return {error}
       }
 
-      const handleChange=(event)=>{
-        if(event.target.value.startsWith(0)){
-          setMessage("Phone Number is valid")
-          setPhoneNumber(event.target.value)
-        } else if(event.target.value.length==0){
-          setPhoneNumber("")
-          setMessage("")
-        } else{
-          setMessage("Phone Number should starts with 0")
+      render(){
+        const {error}=this.state
+        if(error){
+          return <this.props.fallback error={error}/>
         }
+        return this.props.children;
       }
-      return (
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="phone">Phone Number : </label>
-            <br/>
-            <input type="text" id="phone" name="phone" onChange={handleChange} value={phoneNumber}/>
-            <p>{message}</p>
-            <br/>
-            <br/>
-            {/*<button type="submit" disabled={(phoneNumber.length==11 && message=="Phone Number is valid") ? false : true}>Submit</button>*/}
-            <button type="submit" disabled={phoneNumber.length!==11 || message!=="Phone Number is valid"}>Submit</button>
-            <p>{phoneNumber}</p>
-          </form>
+    }
+    
+    const Fallback=({error})=>{
+      alert(error.message)
+      return <p>{error.message}</p>
+    }
+
+    const Child=()=>{
+      throw new Error("Something Wrong")
+      return <p>Child..</p>
+    }
+
+    const App = () => {
+      return(
+        <>
+        <p>App</p>
+        <ErrorBoundary fallback={Fallback}>
+          <Child/>
+        </ErrorBoundary>
+        </>
       )
     }
 
-    function render(){
-      ReactDOM.render(<App/>,rootElement)
-    }
-    render();
+    ReactDOM.render(<App/>,rootElement)
   </script>
 </body>
 
