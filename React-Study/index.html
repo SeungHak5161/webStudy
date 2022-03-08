@@ -42,14 +42,45 @@
     const rootElement=document.getElementById("root")
 
     const todos=[
-      {id:1,value:"wash dishes"},
-      {id:1,value:"do laundry"},
-      {id:1,value:"cleaning floor"},
-      {id:1,value:"dispose trash"},
+      [
+        {id:1,value:"wash dishes"},
+        {id:2,value:"do laundry"},
+        {id:3,value:"cleaning floor"},
+        {id:4,value:"dispose trash"},
+      ],
+      [
+        {id:4,value:"dispose trash"},
+        {id:1,value:"wash dishes"},
+        {id:2,value:"do laundry"},
+        {id:3,value:"cleaning floor"},
+      ],
+      [
+        {id:3,value:"cleaning floor"},
+        {id:4,value:"dispose trash"},
+        {id:1,value:"wash dishes"},
+        {id:2,value:"do laundry"},
+      ],
+      [
+        {id:2,value:"do laundry"},
+        {id:3,value:"cleaning floor"},
+        {id:4,value:"dispose trash"},
+        {id:1,value:"wash dishes"},
+      ]
     ]
    
     const App = () => {
       const [items, setItems]=React.useState(todos)
+
+      React.useEffect(()=>{
+        const interval=setInterval(()=>{
+          const random=Math.floor(Math.random()*4)
+          setItems(todos[random])
+          console.log(random)
+        },1000)
+        return ()=>{
+          clearInterval(interval)
+        }
+      })
 
       const handleDoneClick=(todo)=>{
         setItems((items)=>items.filter((item)=>item!==todo))
@@ -62,11 +93,12 @@
       return(
         <>
           {items.map((todo)=>(
-            <div>
-              <span>{todo.value}</span>
-              <button onClick={()=>handleDoneClick(todo)}>Done</button>
+            <div key={todo.id}>
+              <button onClick={()=>handleDoneClick(todo)}>{todo.value}</button>
             </div>
           ))}
+          <br/>
+          <br/>
           <button onClick={handleRestoreClick}>Restore</button>
         </>
       )
