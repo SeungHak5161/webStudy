@@ -8,52 +8,42 @@
   <div id="root"></div>
   <script type="text/babel">
     const rootElement=document.getElementById("root")
-
-
-    const Id=({handleIdChange})=>{
-        return(
-          <>
-          <label>ID : </label>
-          <input type="text" onChange={handleIdChange}/>
-          </>
-        )
-      }
-
-    const Pw=({handlePwChange})=>{
-      return(
-        <>
-        <label>PW : </label>
-        <input type="password" onChange={handlePwChange}/>
-        </>
-      )
-    }
    
-    const App = () => {  
-      // 상태를 Id, Pw와 같은 컴포넌트에서 관리하게 되면 아래 Login 버튼처럼 컴포넌트 밖에서 상태를 확인할 수 없으므로 상태관리의 주체를 부모로 끌어올림 
-      const [userId, setUserId]=React.useState("")
-      const [userPw, setUserPw]=React.useState("")
+    const App = () => {
+      const [data,setData]=React.useState(null)
+      const [error,setError]=React.useState(null)
       
-      const handleIdChange=(event)=>{
-        setUserId(event.target.value)
-        console.log(userId)
-      }
-      
-      const handlePwChange=(event)=>{
-        setUserPw(event.target.value)
-        console.log(userPw)
-      }
+      React.useEffect(()=>{
+        fetch('https://raw.githubusercontent.com/ techoi/raw-data-api/main/simple-api.json')
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(myJson) {
+           setData(myJson.data)
+          })
+          .catch((error)=>{
+            setError(error.message)})
+      },[])
 
-      const handleLoginClick=(event)=>{
-        alert(`id: ${userId}, pw: ${userPw}`)
+      if(error != null){
+        return <p>{error}</p>
+      }
+      if (data == null){
+        return <p>Loading...</p>
       }
 
       return(
         <>
-        <Id handleIdChange={handleIdChange}/>
-        <br/>
-        <Pw handlePwChange={handlePwChange}/>
-        <br/>
-        <button disabled={userId !== "" && userPw !== "" ? false : true} onClick={handleLoginClick}>Login</button>
+        <div>
+          <p>People</p>
+          <p>{JSON.stringify(data.null,2)}</p>
+          {data.people.map((person)=>(
+            <div>
+              <span>name : {person.name}</span>
+              <span>age : {person.age}</span>
+            </div>
+          ))}
+        </div> 
         </>
       )
     }
