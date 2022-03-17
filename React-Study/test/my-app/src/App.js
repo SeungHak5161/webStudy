@@ -1,16 +1,18 @@
 import Composition from './component/Composition';
 import Extraction from './component/Extraction/Extraction';
 import './App.css';
-import ClassComponent from './component/state/ClassComponent';
-import FunctionalComponent from './component/state/FunctionalComponent';
+import ClassComponent from './component/State/ClassComponent';
+import FunctionalComponent from './component/State/FunctionalComponent';
+import ClassComponent2 from './component/LifeCycle/ClassComponent';
 
 function App() {
   return (
     <div className="App">
-     <FunctionalComponent/>
-     <ClassComponent/>
-     <Composition />
-     <Extraction/>
+      <ClassComponent2/>
+      {/* <FunctionalComponent/>
+      <ClassComponent/>
+      <Composition />
+      <Extraction/> */}
     </div>
   );
 }
