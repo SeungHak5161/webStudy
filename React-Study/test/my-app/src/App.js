@@ -10,18 +10,20 @@ import List from './component/2-9. List/List';
 import ControlledComponent from './component/2-10. Form/ControlledComponent';
 import UncontrolledComponent from './component/2-10. Form/UncontrolledComponent';
 import CompositionDialog from './component/2-11. Composition/CompositionDialog';
+import SpecializedDialog from './component/2-11. Composition/Specialize';
 
 function App() {
   return (
     <div className="App">
-      <CompositionDialog/>
+      <SpecializedDialog/>
+      {/* <CompositionDialog/> */}
       {/* <ControlledComponent />
       <br/>
       --------------------------------------------------------------
       <br/>
       <br/>
-      <UncontrolledComponent/>
-      <List />
+      <UncontrolledComponent/> */}
+      {/* <List />
       <Conditional/>
       <Event />
       <ClassComponent2/>
