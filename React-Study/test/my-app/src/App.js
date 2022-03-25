@@ -9,17 +9,19 @@ import Conditional from './component/2-8. ConditionalRendering/Conditional';
 import List from './component/2-9. List/List';
 import ControlledComponent from './component/2-10. Form/ControlledComponent';
 import UncontrolledComponent from './component/2-10. Form/UncontrolledComponent';
+import CompositionDialog from './component/2-11. Composition/CompositionDialog';
 
 function App() {
   return (
     <div className="App">
-      <ControlledComponent />
+      <CompositionDialog/>
+      {/* <ControlledComponent />
       <br/>
       --------------------------------------------------------------
       <br/>
       <br/>
       <UncontrolledComponent/>
-      {/* <List />
+      <List />
       <Conditional/>
       <Event />
       <ClassComponent2/>
