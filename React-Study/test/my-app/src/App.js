@@ -11,11 +11,18 @@ import ControlledComponent from './component/2-10. Form/ControlledComponent';
 import UncontrolledComponent from './component/2-10. Form/UncontrolledComponent';
 import CompositionDialog from './component/2-11. Composition/CompositionDialog';
 import SpecializedDialog from './component/2-11. Composition/Specialize';
+import Input from './component/3-7. HOC/Input';
+import Button from './component/3-7. HOC/Button';
+import Memo from './component/3-8. Memoization/Memo';
 
 function App() {
   return (
     <div className="App">
-      <SpecializedDialog/>
+      <Memo/>
+      {/* <Input/>
+      <br/>
+      <Button/> */}
+      {/* <SpecializedDialog/> */}
       {/* <CompositionDialog/> */}
       {/* <ControlledComponent />
       <br/>
