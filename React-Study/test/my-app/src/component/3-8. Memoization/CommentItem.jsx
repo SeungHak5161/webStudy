@@ -1,7 +1,8 @@
-import React, {memo, Profiler} from 'react'
+import React, {memo, Profiler,useState, useMemo} from 'react'
 import "./CommentItem.css"
 
 function CommentItem(props) {
+  const [clickCount, setClickCout]=useState(0)
   function onRenderCallback(
     id, // 방금 커밋된 Profiler 트리의 "id"
     phase, // "mount" (트리가 방금 마운트가 된 경우) 혹은 "update"(트리가 리렌더링된 경우)
@@ -17,8 +18,16 @@ function CommentItem(props) {
 
   const handleClick=()=>{
     props.onClick()
+    setClickCout((prev)=>prev+1)
     alert(`${props.title} Clicked`)
   }
+
+  // handleClick에서 clickCount를 변경하지만 likes 값은 변하지 않는데,
+  // 상태가 바뀐 것 자체로 다시 불러왔어야 했음. useMemo()로 감싸서 해결 
+  const rate=useMemo(()=>{
+    console.log("rate check")
+    return (props.likes > 10 ? "Good" : "Bad")
+  },[])
 
   return (
     // Profiler 특정 부분의 랜더링 비용을 계산함
@@ -29,6 +38,8 @@ function CommentItem(props) {
         <span>content : {props.content}</span>
         <br/>
         <span>likes : {props.likes}</span>
+        <br/>
+        <span>{rate}</span>
       </div>
     </Profiler>
   )
