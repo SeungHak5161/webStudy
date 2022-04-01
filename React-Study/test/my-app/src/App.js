@@ -14,11 +14,13 @@ import SpecializedDialog from './component/2-11. Composition/Specialize';
 import Input from './component/3-7. HOC/Input';
 import Button from './component/3-7. HOC/Button';
 import Memo from './component/3-8. Memoization/Memo';
+import Example from './component/3-3. Context/Example'
 
 function App() {
   return (
     <div className="App">
-      <Memo/>
+      <Example/>
+      {/* <Memo/> */}
       {/* <Input/>
       <br/>
       <Button/> */}
