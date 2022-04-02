@@ -23,7 +23,7 @@ function CommentItem(props) {
   }
 
   // handleClick에서 clickCount를 변경하지만 likes 값은 변하지 않는데,
-  // 상태가 바뀐 것 자체로 다시 불러왔어야 했음. useMemo()로 감싸서 해결 
+  // 상태가 바뀐 것 자체로 다시 불러왔어야 했음. useMemo()로 감싸서 해결
   const rate=useMemo(()=>{
     console.log("rate check")
     return (props.likes > 10 ? "Good" : "Bad")
