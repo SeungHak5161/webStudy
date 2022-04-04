@@ -12,7 +12,7 @@ function CommentItem(props) {
     commitTime, // React가 해당 업데이트를 언제 커밋했는지
     interactions // 이 업데이트에 해당하는 상호작용들의 집합
   ) {
-    // 렌더링 타이밍을 집합하거나 로그...
+    // 렌더링 타이밍을 집합하거나 로그... 
     console.log(`actualDuration(${props.title}: ${actualDuration})`)
   }
 
