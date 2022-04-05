@@ -6,7 +6,7 @@ export default class Example extends Component {
   constructor(props){
     super(props)
     this.state={
-      theme:themes.light,
+      theme:themes.light
     }
     this.toggleTheme=()=>{
       this.setState((prev)=>({
