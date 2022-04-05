@@ -17,8 +17,10 @@ export default class Example extends Component {
   render() {
     return (
       <div>
+        {/* .Provider는 context를 구독하는 컴포넌트에게 context의 변화를 알리는 역할(props를 받아서 전달) */}
         <ThemeContext.Provider value={this.state.theme}>
           <ThemedButton changeTheme={this.toggleTheme}/>
+          {/* .Comsumer는 context의 변화를 구독하는 컴포넌트, 자식이 함수여야 함 */}
           <ThemeContext.Consumer>
             {(theme)=>(
               <div 

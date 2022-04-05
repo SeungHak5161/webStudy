@@ -1,19 +1,35 @@
-import React, { Component } from 'react'
-import { ThemeContext } from './ThemeContext'
+import React, { Component, useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 
-export default class ThemedButton extends Component {
-  render() {
-    let props=this.props
-    let theme=this.context
-    return (
-      <button 
-        {...props}
-        onClick={props.changeTheme}
-        style={{backgroundColor:theme.background, color:theme.foreground }}>
-          Button
-      </button>
-    )
-  }
+// export default class ThemedButton extends Component {
+//   render() {
+//     let props=this.props
+//     let theme=this.context
+//     return (
+//       <button
+//         {...props}
+//         onClick={props.changeTheme}
+//         style={{backgroundColor:theme.background, color:theme.foreground }}>
+//           Button
+//       </button>
+//     )
+//   }
+// }
+
+// ThemedButton.contextType=ThemeContext
+
+export default function ThemedButton(props) {
+  const theme = useContext(ThemeContext);
+  return (
+    <button
+      {...props}
+      onClick={props.changeTheme}
+      style={{
+        backgroundColor: theme.background,
+        color: theme.foreground,
+      }}
+    >
+      Button
+    </button>
+  );
 }
-
-ThemedButton.contextType=ThemeContext
