@@ -4,15 +4,7 @@ export default function Dialog(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <>
-      <button
-        style={{
-          position: "absolute",
-          left: 100,
-        }}
-        onClick={() => setIsOpen(true)}
-      >
-        Open
-      </button>
+      <button onClick={() => setIsOpen(true)}>Open</button>
       {isOpen && (
         <div
           style={{
