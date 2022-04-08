@@ -18,12 +18,12 @@ import Example from "./component/3-3. Context/Example";
 import Dialog from "./component/2-11. Composition/Dialog";
 import ThankyouDialog from "./component/2-11. Composition/ThankyouDialog";
 import Example2 from "./component/3-11. Portal/Example2";
-import MouseMove from "./component/3-17. RenderProps/MouseMove";
+import MouseTracker from "./component/3-17. RenderProps/MouseMove";
 
 function App() {
   return (
     <div className="App">
-      <MouseMove />
+      <MouseTracker />
       {/* <Example2 /> */}
       {/* <ThankyouDialog /> */}
       {/* <Example/> */}

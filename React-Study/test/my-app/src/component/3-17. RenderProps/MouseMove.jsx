@@ -1,6 +1,6 @@
 import React, { setState } from "react";
 
-export default function MouseMove() {
+const MouseMove = () => {
   const [mouseLoc, setMouseLoc] = React.useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -13,6 +13,26 @@ export default function MouseMove() {
       <p>
         Current Positions is {mouseLoc.x}, {mouseLoc.y}
       </p>
+      <img
+        src="./cat.png"
+        alt="mouse"
+        style={{
+          position: "absolute",
+          left: mouseLoc.x,
+          top: mouseLoc.y,
+          height: 30,
+          width: 30,
+        }}
+      />
     </div>
+  );
+};
+
+// 캡슐화
+export default function MouseTracker() {
+  return (
+    <>
+      <MouseMove />
+    </>
   );
 }
