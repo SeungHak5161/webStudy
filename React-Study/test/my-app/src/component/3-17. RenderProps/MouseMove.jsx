@@ -1,5 +1,21 @@
 import React, { setState } from "react";
 
+const Cat = (mouseLoc) => {
+  return (
+    <img
+      src="./cat.png"
+      alt="mouse"
+      style={{
+        position: "absolute",
+        left: mouseLoc.x - 4,
+        top: mouseLoc.y - 3,
+        height: 30,
+        width: 30,
+      }}
+    />
+  );
+};
+
 const MouseMove = () => {
   const [mouseLoc, setMouseLoc] = React.useState({ x: 0, y: 0 });
 
@@ -13,17 +29,7 @@ const MouseMove = () => {
       <p>
         Current Positions is {mouseLoc.x}, {mouseLoc.y}
       </p>
-      <img
-        src="./cat.png"
-        alt="mouse"
-        style={{
-          position: "absolute",
-          left: mouseLoc.x,
-          top: mouseLoc.y,
-          height: 30,
-          width: 30,
-        }}
-      />
+      <Cat mouseLoc={mouseLoc} />
     </div>
   );
 };
