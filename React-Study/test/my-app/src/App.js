@@ -19,11 +19,13 @@ import Dialog from "./component/2-11. Composition/Dialog";
 import ThankyouDialog from "./component/2-11. Composition/ThankyouDialog";
 import Example2 from "./component/3-11. Portal/Example2";
 import MouseTracker from "./component/3-17. RenderProps/MouseMove";
+import Component from "./component/3-14. PropTypes/Component";
 
 function App() {
   return (
     <div className="App">
-      <MouseTracker />
+      <Component />
+      {/* <MouseTracker /> */}
       {/* <Example2 /> */}
       {/* <ThankyouDialog /> */}
       {/* <Example/> */}
