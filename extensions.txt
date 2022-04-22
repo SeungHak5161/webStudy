@@ -1,0 +1,21 @@
+VS Code extensions
+
+ES7 React snippets : 자동완성 약어모음
+
+Indent rainbow : 들여쓰기 색 구분
+
+Rainbow Brackets : 괄호 색 구분
+
+prettier : code formatter
+
+vscode-icons : 아이콘 구분하기 쉬워짐
+
+current file path : 절대경로 하단에 표시
+
+Import Cost : 상단에 import 할 때 용량 계산해서 보여줌
+
+ESLint : 코드 구현 방식 일관되게
+
+Auto Rename Tag : 태그 수정시 닫힘 태그도 자동 수정
+
+Git lens : 
