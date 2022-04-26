@@ -50,3 +50,119 @@ aside[role="complementary"] {
   @extend %message-shared;
   background-color: red;
 }
+
+@mixin reflexive-position($item, $value) {
+  @if $item != left and $item != right {
+    @error "Item #{$item} must be either left or right.";
+  }
+  // if(조건, 참표현식, 거짓표현식) -> 삼항연산자랑 유사함
+  $left-value: if($item == right, initial, $value);
+  $right-value: if($item == right, $value, initial);
+
+  left: $left-value;
+  right: $right-value;
+  [dir="rtl"] & {
+    left: $right-value;
+    right: $left-value;
+  }
+}
+
+.sidebar {
+  @include reflexive-position(left, 12px);
+}
+
+// Interpolation -> 브라우저 vendor에 따라 다른 property와 prefix를 사용해야 하는데 이를 비워두고 보간해줌
+// 이 외에도 parameter로 file name을 줘서 이미지를 띄우는 등 여러가지를 할 수 있음
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    -#{$prefix}-#{$property}: $value;
+  }
+  #{$property}: $value;
+}
+
+// Interpolation 사용 않을 시 이런식으로 작성해야 함
+// .gray {
+//   -moz-filter: grayscale(50%);
+//   -webkit-filter: grayscale(50%);
+//   filter: grayscale(50%);
+// }
+
+.gray {
+  background-color: aquamarine;
+  @include prefix(filter, grayscale(80%), moz webkit o ms);
+  width: 100%;
+}
+
+// @mixin inline-animation($duration, $name) {
+//   // 애니메이션을 재생할 각 프레임의 스타일 정의
+//   @keyframes #{$name} {
+//     // @content : 전달한 값 넣어줌
+//     @content;
+//   }
+
+//   animation-name: $name;
+//   animation-duration: $duration;
+//   animation-iteration-count: infinite;
+//   animation-direction: alternate-reverse;
+// }
+
+// .bounce {
+//   position: relative;
+//   left: 20px;
+//   width: 100px;
+//   height: 100px;
+//   border-radius: 50%;
+//   background-color: #333;
+
+//   @include inline-animation(1.5s, bounce) {
+//     0% {
+//       top: 300px;
+//       width: 115px;
+//       height: 90px;
+//     }
+//     5% {
+//       width: 100px;
+//     }
+//     to {
+//       top: 0px;
+//     }
+//   }
+
+// }
+
+@keyframes changeBgColor {
+  from {
+    background-color: yellow;
+  }
+  to {
+    background-color: red;
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    top: 300px;
+    width: 115px;
+    height: 90px;
+  }
+  5% {
+    width: 100px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+.bounce {
+  position: relative;
+  left: 20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #333;
+
+  animation-name: bouncing, changeBgColor;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse;
+}

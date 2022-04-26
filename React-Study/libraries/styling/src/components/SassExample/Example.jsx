@@ -19,6 +19,11 @@ export default function Example() {
       <br />
       <div className="successExtend"> success</div>
       <div className="errorExtend"> error</div>
+      <br />
+      <div className="sidebar">error test</div>
+      <div className="gray">gray scale</div>
+      <div className="pulse">pulse</div>
+      <div className="bounce"></div>
     </>
   );
 }
