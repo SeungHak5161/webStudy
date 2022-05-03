@@ -1,5 +1,4 @@
 import "./App.css";
-import ReactSemanticUIExample from "./components/ReactSemanticUI/ReactSemanticUIExample";
 // // Webpack CSS import
 // import "onsenui/css/onsenui.css";
 // import "onsenui/css/onsen-css-components.css";
@@ -14,7 +13,8 @@ import ReactSemanticUIExample from "./components/ReactSemanticUI/ReactSemanticUI
 // import LayoutExample from "./components/AntDesign/LayoutExample";
 // import FormExample from "./components/AntDesign/FormExample";
 
-import "semantic-ui-css/semantic.min.css";
+// import "semantic-ui-css/semantic.min.css";
+import ReactSemanticUIExample from "./components/ReactSemanticUI/ReactSemanticUIExample";
 
 // onsenui -> 학습 하는 중에 원인 모를 에러가 계속해서 발생, 호환성 맞춰서 재시도 해 봤지만 소용없음
 // React에 대한 지원이 빈약한 라이브러리라고 생각되어(그리고 하루종일 삽질하다 혈압올라서) pass, 모바일 특화
