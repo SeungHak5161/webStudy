@@ -6,6 +6,7 @@ export default function ButtonExample() {
   return (
     <>
       <div>
+        <Button icon="like" color="red" />
         <Button as="div" labelPosition="left">
           <Label as="a" basic color="red" pointing="right">
             2,048
