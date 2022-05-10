@@ -1,4 +1,5 @@
 import "./App.css";
+import GridExample from "./components/ReactSemanticUI/GridExample";
 // // Webpack CSS import
 // import "onsenui/css/onsenui.css";
 // import "onsenui/css/onsen-css-components.css";
@@ -22,7 +23,8 @@ import ReactSemanticUIExample from "./components/ReactSemanticUI/ReactSemanticUI
 function App() {
   return (
     <>
-      <ReactSemanticUIExample />
+      <GridExample />
+      {/* <ReactSemanticUIExample /> */}
       {/* <FormExample /> */}
       {/* <LayoutExample /> */}
       {/* <TypographyExample />
