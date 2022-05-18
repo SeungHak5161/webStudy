@@ -1,5 +1,7 @@
-import "./App.css";
-import GridExample from "./components/ReactSemanticUI/GridExample";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// import "./App.css";
+
 // // Webpack CSS import
 // import "onsenui/css/onsenui.css";
 // import "onsenui/css/onsen-css-components.css";
@@ -16,8 +18,8 @@ import GridExample from "./components/ReactSemanticUI/GridExample";
 
 // import "semantic-ui-css/semantic.min.css";
 // import ReactSemanticUIExample from "./components/ReactSemanticUI/ReactSemanticUIExample";
+// import GridExample from "./components/ReactSemanticUI/GridExample";
 
-import "bootstrap/dist/css/bootstrap.min.css";
 import ReactBootstrapExample from "./components/ReactBootstrapExample/ReactBootstrapExample";
 
 // onsenui -> 학습 하는 중에 원인 모를 에러가 계속해서 발생, 호환성 맞춰서 재시도 해 봤지만 소용없음
