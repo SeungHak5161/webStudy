@@ -47,3 +47,11 @@
 ## 상태변화 흐름도
 
 https://ko.redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif
+
+## 예시 코드 해설
+
+1.  App.js에서 <Counter/> 출력
+2.  Counter.js의 각 기능은 CounterSlice.js에서 가져옴
+3.  CounterSlice.js에는 Reducer가 선언되어 있음<br/>
+4.  (slice는 redux reducer 로직과 action의 집합)
+5.  app/store.js에서 store를 생성하는데, 이때 3번의 Reducer를 사용함.
