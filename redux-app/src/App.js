@@ -1,8 +1,8 @@
 import React from "react";
 import logo from "./logo.svg";
-import { Counter } from "./features/counter/Counter";
+// import { Counter } from "./features/counter/Counter";
 import "./App.css";
-import Test_Counter from "./features/counter/Test_Counter";
+import TestCounter from "./features/counter/Test_Counter";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {/* <Counter /> */}
-        <Test_Counter />
+        <TestCounter />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
