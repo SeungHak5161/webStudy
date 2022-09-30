@@ -46,7 +46,7 @@
 
 ## 상태변화 흐름도
 
-https://ko.redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif
+![gmfmaeh](https://ko.redux.js.org/assets/images/ReduxDataFlowDiagram-49fa8c3968371d9ef6f2a1486bd40a26.gif)
 
 ## 예시 코드 해설
 
