@@ -1,9 +1,13 @@
 <template>
   <div id="app">
     <TodoHeader />
-    <TodoInput />
-    <TodoList />
-    <TodoFooter />
+    <TodoInput @add="addTodo" />
+    <TodoList
+      :propsdata="todoItems"
+      @remove="removeTodo"
+      @complete="completeTodo"
+    />
+    <TodoFooter @clearAll="clearAll" />
   </div>
 </template>
 
@@ -16,11 +20,43 @@ import TodoFooter from "./components/TodoFooter.vue";
 export default {
   name: "App",
   // el: "#app",
+  data: function () {
+    return {
+      todoItems: [],
+    };
+  },
   components: {
     TodoHeader,
     TodoInput,
     TodoList,
     TodoFooter,
+  },
+  methods: {
+    addTodo: function (item) {
+      this.todoItems.push(item);
+    },
+    removeTodo: function (todoItem, index) {
+      this.todoItems.splice(index, 1);
+      localStorage.removeItem(todoItem.value);
+    },
+    completeTodo: function (todoItem) {
+      localStorage.setItem(todoItem.value, JSON.stringify(todoItem));
+    },
+    clearAll: function () {
+      this.todoItems = [];
+    },
+  },
+  created: function () {
+    if (localStorage.length > 0) {
+      for (let i = 0; i < localStorage.length; i++) {
+        // webpack dev server때문에 기본으로 추가되는 key는 제외
+        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
+          this.todoItems.push(
+            JSON.parse(localStorage.getItem(localStorage.key(i)))
+          );
+        }
+      }
+    }
   },
 };
 </script>
@@ -30,15 +66,17 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 500px;
+  box-sizing: border-box;
 }
 body {
   text-align: center;
-  background-color: #f6f6f6;
-  width: 500px;
+  background-color: #e5e2e2;
+  display: flex;
+  justify-content: center;
 }
 input {
   border-style: groove;
-  width: 200px;
 }
 button {
   border-style: groove;

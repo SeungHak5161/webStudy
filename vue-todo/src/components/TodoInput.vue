@@ -1,27 +1,49 @@
 <template>
   <div id="inputBox">
-    <input type="text" v-model="newTodoItem" />
-    <span id="addContainer" @click="addTodo">
-      <img id="addBtn" src="./../assets/add.png" alt="+" />
-      <!-- <i class="fa-solid fa-plus"></i> -->
+    <input
+      ref="inputText"
+      type="text"
+      v-model="newTodoItem"
+      @keyup.enter="addTodo"
+    />
+    <span id="addBtn" @click="addTodo">
+      <img id="addImg" src="./../assets/add.png" alt="+" />
     </span>
+    <ModalComponent v-if="showModal" @close="closeModal">
+      <h3 slot="header">내용을 입력해주세요</h3>
+    </ModalComponent>
   </div>
 </template>
 
 <script>
+import ModalComponent from "./common/modal.vue";
 export default {
   data: function () {
     return {
       newTodoItem: "",
+      showModal: false,
     };
+  },
+  components: {
+    ModalComponent: ModalComponent,
   },
   methods: {
     addTodo: function () {
-      localStorage.setItem(this.newTodoItem, this.newTodoItem);
-      this.clearInput();
+      if (this.newTodoItem.trim().length > 0) {
+        const item = { value: this.newTodoItem, completed: false };
+        localStorage.setItem(this.newTodoItem, JSON.stringify(item));
+        this.clearInput();
+        this.$emit("add", item);
+      } else {
+        this.showModal = !this.showModal;
+      }
     },
     clearInput: function () {
       this.newTodoItem = "";
+    },
+    closeModal: function () {
+      this.showModal = false;
+      this.$refs.inputText.focus();
     },
   },
 };
@@ -34,24 +56,38 @@ input:focus {
 #inputBox {
   height: 3rem;
   line-height: 3rem;
-  border-radius: 5px;
+  display: flex;
+  justify-content: center;
 }
 #inputBox input {
   height: 100%;
   border-style: none;
   font-size: 0.9rem;
+  border-radius: 5px;
+  padding: 0;
+  width: calc(100% - 3.5rem);
+  padding-left: 1rem;
+  margin-right: 0.5rem;
+  border: black 2px solid;
 }
-#addContainer {
-  float: right;
-  background: linear-gradient(to right, #f6d365, #fda085);
-  display: block;
-  width: 3rem;
+#addBtn {
+  height: 100%;
   aspect-ratio: 1;
   border-radius: 0 5px 5px 0;
-  /* position: absolute; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-#addContainer #addBtn {
-  height: 100%;
-  /* position: relative; */
+#addBtn #addImg {
+  height: 80%;
+}
+#addBtn #addImg:hover {
+  transform: scale(1.1);
+  transition: 100ms;
+}
+#exitImg {
+  height: 2rem;
+  cursor: pointer;
 }
 </style>

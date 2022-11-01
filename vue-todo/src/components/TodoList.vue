@@ -1,36 +1,103 @@
 <template>
   <div>
-    <ul>
-      <li v-for="todoItem in todoItems" :key="todoItem">
-        <span>{{ todoItem }}</span>
+    <transition-group name="list" tag="ul">
+      <li v-for="(todoItem, index) in propsdata" :key="todoItem.value">
+        <div class="liBox">
+          <span class="liContent">
+            <input
+              class="liCheckbox"
+              type="checkbox"
+              @click="completeTodo(todoItem)"
+              :checked="todoItem.completed"
+            />
+            <span :class="{ textCompleted: todoItem.completed }">
+              {{ todoItem.value }}
+            </span>
+          </span>
+          <span class="deleteBtn">
+            <img
+              @click="removeTodo(todoItem, index)"
+              class="deleteImg"
+              src="./../assets/trashcan.png"
+              alt="delete"
+            />
+          </span>
+        </div>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {
-      todoItems: [],
-    };
-  },
-  created: function () {
-    if (localStorage.length > 0) {
-      for (let i = 0; i < localStorage.length; i++) {
-        // webpack dev server때문에 기본으로 추가되는 key는 제외
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server") {
-          this.todoItems.push(localStorage.key(i));
-        }
-      }
-    }
-  },
+  props: ["propsdata"],
   methods: {
-    removeTodo: function () {
-      // localStorage.removeItem(this.todoItem);
+    completeTodo: function (todoItem) {
+      todoItem.completed = !todoItem.completed;
+      this.$emit("complete", todoItem);
+    },
+    removeTodo: function (todoItem, index) {
+      this.$emit("remove", todoItem, index);
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+.liBox {
+  height: 3rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.liCheckbox {
+  margin-right: 1rem;
+}
+.liContent {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 100%;
+  background: white;
+  border-radius: 5px;
+  width: calc(100% - 3.5rem);
+  margin-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.deleteBtn {
+  height: 100%;
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deleteBtn .deleteImg {
+  height: 80%;
+}
+.deleteBtn .deleteImg:hover {
+  transform: scale(1.1);
+  transition: 100ms;
+}
+.textCompleted {
+  text-decoration: line-through;
+  color: gray;
+}
+.list-enter-active,
+.list-leave-active {
+  transition: all 1s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+</style>

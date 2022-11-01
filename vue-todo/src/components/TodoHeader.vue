@@ -6,7 +6,7 @@
 
 <style scoped>
 h1 {
-  color: #d2d2d2;
+  color: #2a3144;
   font-weight: 900;
   margin: 2.5rem - 1.5rem;
   font-size: 3rem;
