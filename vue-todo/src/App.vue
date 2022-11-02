@@ -32,21 +32,21 @@ export default {
     TodoFooter,
   },
   methods: {
-    addTodo: function (item) {
+    addTodo(item) {
       this.todoItems.push(item);
     },
-    removeTodo: function (todoItem, index) {
+    removeTodo(todoItem, index) {
       this.todoItems.splice(index, 1);
       localStorage.removeItem(todoItem.value);
     },
-    completeTodo: function (todoItem) {
+    completeTodo(todoItem) {
       localStorage.setItem(todoItem.value, JSON.stringify(todoItem));
     },
-    clearAll: function () {
+    clearAll() {
       this.todoItems = [];
     },
   },
-  created: function () {
+  created() {
     if (localStorage.length > 0) {
       for (let i = 0; i < localStorage.length; i++) {
         // webpack dev server때문에 기본으로 추가되는 key는 제외

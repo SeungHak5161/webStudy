@@ -18,17 +18,17 @@
 <script>
 import ModalComponent from "./common/modal.vue";
 export default {
-  data: function () {
+  data() {
     return {
       newTodoItem: "",
       showModal: false,
     };
   },
   components: {
-    ModalComponent: ModalComponent,
+    ModalComponent,
   },
   methods: {
-    addTodo: function () {
+    addTodo() {
       if (this.newTodoItem.trim().length > 0) {
         const item = { value: this.newTodoItem, completed: false };
         localStorage.setItem(this.newTodoItem, JSON.stringify(item));
@@ -38,10 +38,10 @@ export default {
         this.showModal = !this.showModal;
       }
     },
-    clearInput: function () {
+    clearInput() {
       this.newTodoItem = "";
     },
-    closeModal: function () {
+    closeModal() {
       this.showModal = false;
       this.$refs.inputText.focus();
     },
