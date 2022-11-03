@@ -2,11 +2,7 @@
   <div id="app">
     <TodoHeader />
     <TodoInput @add="addTodo" />
-    <TodoList
-      :propsdata="todoItems"
-      @remove="removeTodo"
-      @complete="completeTodo"
-    />
+    <TodoList @remove="removeTodo" @complete="completeTodo" />
     <TodoFooter @clearAll="clearAll" />
   </div>
 </template>

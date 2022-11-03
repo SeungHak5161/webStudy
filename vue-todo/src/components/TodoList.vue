@@ -1,7 +1,10 @@
 <template>
   <div>
     <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in propsdata" :key="todoItem.value">
+      <li
+        v-for="(todoItem, index) in this.storedTodoItems"
+        :key="todoItem.value"
+      >
         <div class="liBox">
           <span class="liContent">
             <input
@@ -30,14 +33,18 @@
 
 <script>
 export default {
-  props: ["propsdata"],
   methods: {
-    completeTodo: function (todoItem) {
+    completeTodo(todoItem) {
       todoItem.completed = !todoItem.completed;
       this.$emit("complete", todoItem);
     },
-    removeTodo: function (todoItem, index) {
+    removeTodo(todoItem, index) {
       this.$emit("remove", todoItem, index);
+    },
+  },
+  computed: {
+    storedTodoItems() {
+      return this.$store.getters.getTodoItems;
     },
   },
 };
